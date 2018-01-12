@@ -17,12 +17,30 @@
 #include <unistd.h>
 //#include <time.h>
 #include <sys/time.h>
+#include <sys/wait.h>
 
 int main() {
   //execl("~/Documents/COMP8005/A1/execute");
   int pid;
+  pid_t wpid;
+  int status = 0;
 
+  /*
   pid = fork();
+
+
+  if (pid == 0) {
+    //execl("/bin/ls", "ls" "-l", (char*)0);
+    execl("/home/brandondg/Documents/COMP8005/A1/execute", "execute", (char*)0);
+    perror("Exec fail ");
+    exit(1);
+  } */
+
+  for (size_t i = 0; i < 2; i++) {
+    if ((pid = fork()) <= 0) {
+      break;
+    }
+  }
 
   if (pid == 0) {
     //execl("/bin/ls", "ls" "-l", (char*)0);
@@ -30,6 +48,9 @@ int main() {
     perror("Exec fail ");
     exit(1);
   }
+
+  while ((wpid = wait(&status)) > 0);
+  printf("Parent finished\n");
 
   /*
   clock_t begin = clock();
