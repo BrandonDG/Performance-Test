@@ -146,13 +146,10 @@ void parent(int p[2]) {
   printf("--------------------------------------------------------------------\n");
   printf("Processes    |    Start Time   |    End Time     | Total Execution\n");
   printf("--------------------------------------------------------------------\n");
-  for (;;)
-  {
-    switch (nread = read(p[0], buf, MSGSIZE))
-    {
+  for (;;) {
+    switch (nread = read(p[0], buf, MSGSIZE)) {
       case -1:
       case 0:
-	      printf("(pipe empty)\n");
         printf("The Average: %d\n", avg / c);
 	      exit(0);
         break;
@@ -189,6 +186,7 @@ void parent(int p[2]) {
         else
 	      printf ("MSG = %s\n", buf);
         */
+
     }
   }
 }
