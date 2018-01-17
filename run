@@ -1,3 +1,17 @@
 #!/bin/bash
-./processes
-./threads
+#./processes
+#./threads
+>threadresults
+>processresults
+if [ "$#" -lt 1 ]
+then
+  loop=2
+else
+  loop=$1
+fi
+
+for ((i=0; i<$loop; i++))
+  do
+    ./processes
+    ./threads
+  done

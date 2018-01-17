@@ -28,6 +28,12 @@ int main() {
   pthread_t ths[8];
   void* bfs[8];
   int avg, dif;
+  FILE *f;
+
+  if ((f = fopen("threadresults", "a")) == 0) {
+		fprintf(stderr, "fopen\n");
+		exit(1);
+	}
 
   for (size_t i = 0; i < 8; i++) {
     pthread_create(&ths[i], NULL, execute, NULL);
@@ -45,6 +51,7 @@ int main() {
     sscanf((char *)bfs[i] + 38, "%d", &dif);
     avg += dif;
     printf("Process Time: %s\n", (char *)bfs[i]);
+    fprintf(f, "%s\n", (char *)bfs[i]);
   }
   printf("--------------------------------------------------------------------\n");
   printf("The Average: %d\n", avg / 8);
