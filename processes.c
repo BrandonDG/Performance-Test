@@ -150,6 +150,7 @@ void parent(int p[2]) {
     switch (nread = read(p[0], buf, MSGSIZE)) {
       case -1:
       case 0:
+        printf("--------------------------------------------------------------------\n");
         printf("The Average: %d\n", avg / c);
 	      exit(0);
         break;

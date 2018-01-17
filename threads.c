@@ -46,6 +46,7 @@ int main() {
     avg += dif;
     printf("Process Time: %s\n", (char *)bfs[i]);
   }
+  printf("--------------------------------------------------------------------\n");
   printf("The Average: %d\n", avg / 8);
 
   return 0;
@@ -71,9 +72,10 @@ void* execute() {
   gettimeofday(&end, NULL);
   //printf("End Time = %lu.%06lu\n", end.tv_sec, end.tv_usec);
 
+
   sprintf(buf, "%lu.%06lu %lu.%06lu %lu.%06lu", begin.tv_sec, begin.tv_usec, end.tv_sec, end.tv_usec,
         (end.tv_sec - begin.tv_sec), (end.tv_usec - begin.tv_usec));
-  printf("%s\n", buf);
+  //printf("%s\n", buf);
 
   /*
   printf("Total Time: %lu.%06lu\n", (end.tv_sec - begin.tv_sec), (end.tv_usec - begin.tv_usec));
