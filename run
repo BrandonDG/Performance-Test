@@ -1,6 +1,4 @@
 #!/bin/bash
-#./processes
-#./threads
 >threadresults
 >processresults
 if [ "$#" -lt 1 ]
@@ -15,3 +13,6 @@ for ((i=0; i<$loop; i++))
     ./processes
     ./threads
   done
+
+./results.py
+./averages.py

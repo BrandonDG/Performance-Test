@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-//#include <time.h>
+#include <time.h>
 #include <sys/time.h>
 #include <sys/wait.h>
 
@@ -25,7 +25,6 @@ void execute(int p[2]);
 void parent(int p[2], FILE *f);
 
 int main() {
-  //execl("~/Documents/COMP8005/A1/execute");
   int pid, pfd[2];
   pid_t wpid;
   int status = 0;
@@ -69,17 +68,22 @@ void execute(int p[2]) {
 
   gettimeofday(&begin, NULL);
 
-  printf("TAKE UP TIME\n");
-  printf("TAKE UP TIME\n");
-  printf("TAKE UP TIME\n");
-  printf("TAKE UP TIME\n");
-  printf("TAKE UP TIME\n");
-  printf("TAKE UP TIME\n");
-  printf("TAKE UP TIME\n");
-  printf("TAKE UP TIME\n");
-  printf("TAKE UP TIME\n");
-  printf("TAKE UP TIME\n");
-  printf("TAKE UP TIME\n");
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
+  printf("TAKE UP TIME : %d \n", (int)getpid());
 
   gettimeofday(&end, NULL);
 
@@ -111,7 +115,6 @@ void parent(int p[2], FILE *f) {
         break;
       default:
         sscanf(buf + 38, "%d", &dif);
-        // (18*2)+2 = 38
         avg += dif;
         ++c;
         printf("Process Time: %s\n", buf);
