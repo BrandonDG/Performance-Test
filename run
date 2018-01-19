@@ -3,7 +3,7 @@
 >processresults
 if [ "$#" -lt 1 ]
 then
-  loop=2
+  loop=1
 else
   loop=$1
 fi

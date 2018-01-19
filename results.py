@@ -11,12 +11,14 @@ componentnumbers = []
 c = 0
 
 for line in f1:
-    processresults.append(float(line[36:44]))
+    #processresults.append(float(line[36:44]))
+    processresults.append(float(line.split()[2]))
     c += 1
     componentnumbers.append(c)
 
 for line in f2:
-    threadresults.append(float(line[36:44]));
+    #threadresults.append(float(line[36:44]))
+    threadresults.append(float(line.split()[2]))
 
 plotly.offline.plot({
     "data": [Scatter(x=componentnumbers, y=processresults, name="Processes"), Scatter(x=componentnumbers, y=threadresults, name="Threads")],

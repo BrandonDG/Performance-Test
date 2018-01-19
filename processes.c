@@ -40,7 +40,7 @@ int main() {
 		exit(1);
 	}
 
-  for (size_t i = 0; i < 8; i++) {
+  for (size_t i = 0; i < 5; i++) {
     if ((pid = fork()) <= 0) {
       break;
     }
@@ -68,22 +68,25 @@ void execute(int p[2]) {
 
   gettimeofday(&begin, NULL);
 
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
-  printf("TAKE UP TIME : %d \n", (int)getpid());
+  for (size_t i = 0; i < 10; i++) {
+    printf("TAKE UP TIME : %d \n", (int)getpid());
+    printf("TAKE UP TIME : %d \n", (int)getpid());
+    printf("TAKE UP TIME : %d \n", (int)getpid());
+    printf("TAKE UP TIME : %d \n", (int)getpid());
+    printf("TAKE UP TIME : %d \n", (int)getpid());
+    printf("TAKE UP TIME : %d \n", (int)getpid());
+    printf("TAKE UP TIME : %d \n", (int)getpid());
+    printf("TAKE UP TIME : %d \n", (int)getpid());
+    printf("TAKE UP TIME : %d \n", (int)getpid());
+    printf("TAKE UP TIME : %d \n", (int)getpid());
+  }
+
+  /*
+  for (size_t i = 0; i < 50000000; i++) {
+    float p = 1513252432.234235242534;
+    p *= 10000.432424243424432432;
+    p /= 10000.32423242423;
+  } */
 
   gettimeofday(&end, NULL);
 
