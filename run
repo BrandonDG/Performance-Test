@@ -11,8 +11,13 @@ fi
 for ((i=0; i<$loop; i++))
   do
     ./processes
+  done
+
+for ((i=0; i<$loop; i++))
+  do
     ./threads
   done
+
 
 ./results.py
 ./averages.py

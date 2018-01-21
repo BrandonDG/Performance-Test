@@ -12,13 +12,10 @@ tavg = 0
 c = 0
 
 for line in f1:
-    #pavg += float(line[36:44])
-    #print line.split()[2]
     pavg += float(line.split()[2])
     c += 1
 
 for line in f2:
-    #tavg += float(line[36:44])
     tavg += float(line.split()[2])
 
 pavg /= c;

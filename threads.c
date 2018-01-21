@@ -18,15 +18,20 @@
 #include <time.h>
 #include <sys/time.h>
 #include <pthread.h>
+#include <gmp.h>
+#include "primedecompose.h"
 
 #define MSGSIZE 64
+#define MAX_FACTORS	1024
 
 void* execute();
+
+// Globals
+mpz_t dest[MAX_FACTORS]; // must be large enough to hold all the factors!
 
 int main() {
   pthread_t ths[5];
   void* bfs[5];
-  int avg, dif;
   FILE *f;
 
   if ((f = fopen("threadresults", "a")) == 0) {
@@ -45,46 +50,35 @@ int main() {
   printf("Threads     |    Start Time   |    End Time     | Total Execution\n");
   printf("--------------------------------------------------------------------\n");
   for (size_t i = 0; i < 5; i++) {
-    sscanf((char *)bfs[i] + 38, "%d", &dif);
-    avg += dif;
     printf("Thread Time: %s\n", (char *)bfs[i]);
     fprintf(f, "%s\n", (char *)bfs[i]);
   }
   printf("--------------------------------------------------------------------\n");
-  printf("The Average: %d\n", avg / 5);
-
   return 0;
 }
 
 void* execute() {
   struct timeval begin, end;
   char *buf = (char *)malloc(MSGSIZE);
+  char *num = "43980248392224";
 
   gettimeofday(&begin, NULL);
 
-  
-  for (size_t i = 0; i < 10; i++) {
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-  }
-  /*
-  for (size_t i = 0; i < 50000000; i++) {
-    float p = 1513252432.234235242534;
-    p *= 10000.432424243424432432;
-    p /= 10000.32423242423;
-  } */
+  mpz_t n;
+	int i, l;
+
+	mpz_init_set_str(n, num, 10);
+	l = decompose(n, dest);
 
   gettimeofday(&end, NULL);
 
-  sprintf(buf, "%lu.%06lu %lu.%06lu %lu.%06lu", begin.tv_sec, begin.tv_usec, end.tv_sec, end.tv_usec,
-        (end.tv_sec - begin.tv_sec), (end.tv_usec - begin.tv_usec));
+  i = end.tv_usec - begin.tv_usec;
+  if (i < 0) {
+    i *= -1;
+  }
+
+  sprintf(buf, "%lu.%06lu %lu.%06lu %lu.%06d", begin.tv_sec, begin.tv_usec, end.tv_sec, end.tv_usec,
+        (end.tv_sec - begin.tv_sec), i);
   return (void *) buf;
+  //return NULL;
 }

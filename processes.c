@@ -18,11 +18,17 @@
 #include <time.h>
 #include <sys/time.h>
 #include <sys/wait.h>
+#include <gmp.h>
+#include "primedecompose.h"
 
 #define MSGSIZE 64
+#define MAX_FACTORS	1024
 
 void execute(int p[2]);
 void parent(int p[2], FILE *f);
+
+// Globals
+mpz_t dest[MAX_FACTORS]; // must be large enough to hold all the factors!
 
 int main() {
   int pid, pfd[2];
@@ -63,35 +69,27 @@ int main() {
 void execute(int p[2]) {
   struct timeval begin, end;
   char tm[MSGSIZE];
+  char *num = "43980248392224";
 
   close(p[0]);
 
   gettimeofday(&begin, NULL);
 
-  for (size_t i = 0; i < 10; i++) {
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-    printf("TAKE UP TIME : %d \n", (int)getpid());
-  }
+  mpz_t n;
+	int i, l;
 
-  /*
-  for (size_t i = 0; i < 50000000; i++) {
-    float p = 1513252432.234235242534;
-    p *= 10000.432424243424432432;
-    p /= 10000.32423242423;
-  } */
+	mpz_init_set_str(n, num, 10);
+	l = decompose(n, dest);
 
   gettimeofday(&end, NULL);
 
-  sprintf(tm, "%lu.%06lu %lu.%06lu %lu.%06lu", begin.tv_sec, begin.tv_usec, end.tv_sec, end.tv_usec,
-        (end.tv_sec - begin.tv_sec), (end.tv_usec - begin.tv_usec));
+  i = end.tv_usec - begin.tv_usec;
+  if (i < 0) {
+    i *= -1;
+  }
+
+  sprintf(tm, "%lu.%06lu %lu.%06lu %lu.%06d", begin.tv_sec, begin.tv_usec, end.tv_sec, end.tv_usec,
+        (end.tv_sec - begin.tv_sec), i);
   write(p[1], tm, MSGSIZE);
 
   exit(0);
