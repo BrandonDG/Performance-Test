@@ -21,9 +21,11 @@
 #include <gmp.h>
 #include "primedecompose.h"
 
+// Constants
 #define MSGSIZE 64
 #define MAX_FACTORS	1024
 
+// Function prototypes
 void execute(int p[2]);
 void parent(int p[2], FILE *f);
 
@@ -66,6 +68,18 @@ int main() {
   return 0;
 }
 
+/*---------------------------------------------------------------------------------------
+--      SOURCE FILE:            processes.c
+--
+--      FUNCTION HEADER:        void execute(int p[2])
+--
+--      DATE:                   January 13, 2018
+--
+--      DESIGNERS:              Brandon Gillespie
+--
+--      PROGRAMMERS:            Brandon Gillespie
+--
+---------------------------------------------------------------------------------------*/
 void execute(int p[2]) {
   struct timeval begin, end;
   char tm[MSGSIZE];
@@ -95,6 +109,18 @@ void execute(int p[2]) {
   exit(0);
 }
 
+/*---------------------------------------------------------------------------------------
+--      SOURCE FILE:            processes.c
+--
+--      FUNCTION HEADER:        void parent(int p[2], FILE *f)
+--
+--      DATE:                   January 13, 2018
+--
+--      DESIGNERS:              Brandon Gillespie
+--
+--      PROGRAMMERS:            Brandon Gillespie
+--
+---------------------------------------------------------------------------------------*/
 void parent(int p[2], FILE *f) {
   int nread, c, dif, avg;
   char buf[MSGSIZE];

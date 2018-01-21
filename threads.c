@@ -21,9 +21,11 @@
 #include <gmp.h>
 #include "primedecompose.h"
 
+// Constants
 #define MSGSIZE 64
 #define MAX_FACTORS	1024
 
+// Function prototypes
 void* execute();
 
 // Globals
@@ -57,6 +59,18 @@ int main() {
   return 0;
 }
 
+/*---------------------------------------------------------------------------------------
+--      SOURCE FILE:            threads.c
+--
+--      FUNCTION HEADER:        void* execute()
+--
+--      DATE:                   January 13, 2018
+--
+--      DESIGNERS:              Brandon Gillespie
+--
+--      PROGRAMMERS:            Brandon Gillespie
+--
+---------------------------------------------------------------------------------------*/
 void* execute() {
   struct timeval begin, end;
   char *buf = (char *)malloc(MSGSIZE);
